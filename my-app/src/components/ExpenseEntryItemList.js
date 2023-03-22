@@ -48,6 +48,7 @@ class ExpenseEntryItemList extends React.Component {
                 );
             })
         }
+        console.log(this.props)
     }
     handleDelete = (id,e) => {
         e.preventDefault();
@@ -61,6 +62,7 @@ class ExpenseEntryItemList extends React.Component {
         return total;
     }
     render() {
+        console.log(this.props.expenses)
         const lists = this.props.expenses.map((item) =>
             <tr key={item.id}>
                 <td>{item.name}</td>
