@@ -6,7 +6,7 @@ import { ac, updateCalculation } from "../../actions";
 
 const mapStateToProps = state => {
     return {
-        calculation: state
+        calculation: state.newCalculation
     }
 }
 
@@ -26,60 +26,66 @@ class CalculatorComponent extends React.Component {
         super(props);
     }
 
+    handleUpdate = (value) => {
+        console.log(value)
+        this.props.onUpdateCalculation(value);
+    }
+
     render() {
+        console.log(this.props)
         return (
             <div id="app">
                 <div>
                     <div className="calculator">
                         <div className="formulaScreen"></div>
-                        <div className="outputScreen" id="display">0</div>
+                        <div className="outputScreen" id="display">{ this.props.calculation }</div>
                         <div>
-                            <button className="jumbo" id="clear" value="AC" style={{background: `rgb(172, 57, 57)`}}>
+                            <button className="jumbo" id="clear" value="AC" style={{background: `rgb(172, 57, 57)`}} >
                                 AC
                             </button>
-                            <button id="divide" value="/" style={{background: `rgb(102, 102, 102)`}}>
+                            <button id="divide" value="/" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.devide)}>
                                 { OPERATORS.devide }
                             </button>
-                            <button id="multiply" value="x" style={{background: `rgb(102, 102, 102)`}}>
+                            <button id="multiply" value="x" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.multiplication)}>
                                 { OPERATORS.multiplication }
                             </button>
-                            <button id="seven" value="7">
+                            <button id="seven" value="7" onClick={(e) => this.handleUpdate(NUMBERS.seven)}>
                                 { NUMBERS.seven }
                             </button>
-                            <button id="eight" value="8">
+                            <button id="eight" value="8" onClick={(e) => this.handleUpdate(NUMBERS.eight)}>
                                 { NUMBERS.eight }
                             </button>
-                            <button id="nine" value="9">
+                            <button id="nine" value="9" onClick={(e) => this.handleUpdate(NUMBERS.nine)}>
                                 { NUMBERS.nine }
                             </button>
-                            <button id="subtract" value="‑" style={{background: `rgb(102, 102, 102)`}}>
+                            <button id="subtract" value="‑" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.minus)}>
                                 { OPERATORS.minus }
                             </button>
-                            <button id="four" value="4">
+                            <button id="four" value="4" onClick={(e) => this.handleUpdate(NUMBERS.four)}>
                                 { NUMBERS.four }
                             </button>
-                            <button id="five" value="5">
+                            <button id="five" value="5" onClick={(e) => this.handleUpdate(NUMBERS.five)}>
                                 { NUMBERS.five }
                             </button>
-                            <button id="six" value="6">
+                            <button id="six" value="6" onClick={(e) => this.handleUpdate(NUMBERS.six)}>
                                 { NUMBERS.six }
                             </button>
-                            <button id="add" value="+" style={{background: `rgb(102, 102, 102)`}}>
+                            <button id="add" value="+" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.add)}>
                                 { OPERATORS.add }
                             </button>
-                            <button id="one" value="1">
+                            <button id="one" value="1" onClick={(e) => this.handleUpdate(NUMBERS.one)}>
                                 { NUMBERS.one }
                             </button>
-                            <button id="two" value="2">
+                            <button id="two" value="2" onClick={(e) => this.handleUpdate(NUMBERS.two)}>
                                 { NUMBERS.two }
                             </button>
-                            <button id="three" value="3">
+                            <button id="three" value="3" onClick={(e) => this.handleUpdate(NUMBERS.three)}>
                                 { NUMBERS.three }
                             </button>
-                            <button className="jumbo" id="zero" value="0">
+                            <button className="jumbo" id="zero" value="0" onClick={(e) => this.handleUpdate(NUMBERS.zero)}>
                                 { NUMBERS.zero }
                             </button>
-                            <button id="decimal" value=".">
+                            <button id="decimal" value="." onClick={(e) => this.handleUpdate(DECIMAL_POINT)}>
                                 { DECIMAL_POINT }
                             </button>
                             <button id="equals" value="="

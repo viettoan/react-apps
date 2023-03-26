@@ -3,6 +3,6 @@ import acReducer from "./acReducer";
 import updateCalculationReducer from "./updateCalculationReducer";
 
 export default combineReducers({
-    acReducer,
-    updateCalculationReducer
+    acReducer: acReducer,
+    newCalculation: updateCalculationReducer
 })
