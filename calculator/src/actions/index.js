@@ -1,12 +1,24 @@
-import { AC, CALCULATE, UPDATE_CALCULATION } from "./types";
+import { UPDATE_FORMULA, RESET_FORMULA, UPDATE_OUTPUT, RESET_OUTPUT } from "./types";
 
-export const ac = () => ({
-    type: AC,
+export const updateFormula = formula => ({
+    type: UPDATE_FORMULA,
+    payload: {
+        formula
+    }
 });
 
-export const updateCalculation = calculation => ({
-    type: UPDATE_CALCULATION,
+export const resetFormula = () => ({
+   type: RESET_FORMULA
+});
+
+export const updateOutput = (output, isOperator) => ({
+    type: UPDATE_OUTPUT,
     payload: {
-        calculation
+        output,
+        isOperator
     }
+});
+
+export const resetOutput = () => ({
+    type: RESET_OUTPUT
 });

@@ -1,4 +1,4 @@
-export const AC = 'AC';
-export const CALCULATE = 'CALCULATE';
-
-export const UPDATE_CALCULATION = 'UPDATE_CALCULATION';
+export const UPDATE_FORMULA = 'UPDATE_FORMULA';
+export const RESET_FORMULA = 'RESET_FORMULA';
+export const UPDATE_OUTPUT = 'UPDATE_OUTPUT';
+export const RESET_OUTPUT = 'RESET_OUTPUT';

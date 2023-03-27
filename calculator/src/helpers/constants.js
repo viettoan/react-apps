@@ -14,7 +14,7 @@ export const NUMBERS = {
 export const OPERATORS = {
     add: '+',
     minus: '-',
-    multiplication: '*',
+    multiplication: 'x',
     devide: '/'
 };
 

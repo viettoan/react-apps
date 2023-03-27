@@ -2,22 +2,29 @@ import React from "react";
 import './CalculatorComponent.css'
 import { NUMBERS, OPERATORS, DECIMAL_POINT } from "../../helpers/constants";
 import { connect } from "react-redux";
-import { ac, updateCalculation } from "../../actions";
+import { updateFormula, resetFormula, updateOutput, resetOutput } from "../../actions";
 
 const mapStateToProps = state => {
     return {
-        calculation: state.newCalculation
+        formula: state.formula,
+        output: state.output
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAc: () => {
-            dispatch(ac())
+        onUpdateFormula: formula => {
+            dispatch(updateFormula(formula))
         },
-        onUpdateCalculation: calculation => {
-            dispatch(updateCalculation(calculation))
-        }
+        onResetFormula: () => {
+            dispatch(resetFormula())
+        },
+        onUpdateOutput: output => {
+            dispatch(updateOutput(output))
+        },
+        onResetOutput: () => {
+            dispatch(resetOutput())
+        },
     }
 }
 
@@ -26,9 +33,23 @@ class CalculatorComponent extends React.Component {
         super(props);
     }
 
-    handleUpdate = (value) => {
-        console.log(value)
-        this.props.onUpdateCalculation(value);
+    handleOperator = (value) => {
+        this.props.onResetOutput();
+        this.props.onUpdateOutput(value);
+        this.props.onUpdateFormula(value);
+    }
+
+    handleNumber = (value) => {
+        this.props.onResetOutput();
+        this.props.onUpdateOutput(value);
+        this.props.onUpdateFormula(value);
+    }
+
+    calculate = () => {
+        const result = eval(this.props.formula);
+        this.props.onResetOutput();
+        this.props.onResetFormula();
+        this.props.onUpdateFormula(result);
     }
 
     render() {
@@ -37,59 +58,59 @@ class CalculatorComponent extends React.Component {
             <div id="app">
                 <div>
                     <div className="calculator">
-                        <div className="formulaScreen"></div>
-                        <div className="outputScreen" id="display">{ this.props.calculation }</div>
+                        <div className="formulaScreen">{ this.props.formula }</div>
+                        <div className="outputScreen" id="display">{ this.props.output }</div>
                         <div>
                             <button className="jumbo" id="clear" value="AC" style={{background: `rgb(172, 57, 57)`}} >
                                 AC
                             </button>
-                            <button id="divide" value="/" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.devide)}>
+                            <button id="divide" value="/" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleOperator(OPERATORS.devide)}>
                                 { OPERATORS.devide }
                             </button>
-                            <button id="multiply" value="x" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.multiplication)}>
+                            <button id="multiply" value="x" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleOperator(OPERATORS.multiplication)}>
                                 { OPERATORS.multiplication }
                             </button>
-                            <button id="seven" value="7" onClick={(e) => this.handleUpdate(NUMBERS.seven)}>
+                            <button id="seven" value="7" onClick={(e) => this.handleNumber(NUMBERS.seven)}>
                                 { NUMBERS.seven }
                             </button>
-                            <button id="eight" value="8" onClick={(e) => this.handleUpdate(NUMBERS.eight)}>
+                            <button id="eight" value="8" onClick={(e) => this.handleNumber(NUMBERS.eight)}>
                                 { NUMBERS.eight }
                             </button>
-                            <button id="nine" value="9" onClick={(e) => this.handleUpdate(NUMBERS.nine)}>
+                            <button id="nine" value="9" onClick={(e) => this.handleNumber(NUMBERS.nine)}>
                                 { NUMBERS.nine }
                             </button>
-                            <button id="subtract" value="‑" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.minus)}>
+                            <button id="subtract" value="‑" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleOperator(OPERATORS.minus)}>
                                 { OPERATORS.minus }
                             </button>
-                            <button id="four" value="4" onClick={(e) => this.handleUpdate(NUMBERS.four)}>
+                            <button id="four" value="4" onClick={(e) => this.handleNumber(NUMBERS.four)}>
                                 { NUMBERS.four }
                             </button>
-                            <button id="five" value="5" onClick={(e) => this.handleUpdate(NUMBERS.five)}>
+                            <button id="five" value="5" onClick={(e) => this.handleNumber(NUMBERS.five)}>
                                 { NUMBERS.five }
                             </button>
-                            <button id="six" value="6" onClick={(e) => this.handleUpdate(NUMBERS.six)}>
+                            <button id="six" value="6" onClick={(e) => this.handleNumber(NUMBERS.six)}>
                                 { NUMBERS.six }
                             </button>
-                            <button id="add" value="+" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleUpdate(OPERATORS.add)}>
+                            <button id="add" value="+" style={{background: `rgb(102, 102, 102)`}} onClick={(e) => this.handleOperator(OPERATORS.add)}>
                                 { OPERATORS.add }
                             </button>
-                            <button id="one" value="1" onClick={(e) => this.handleUpdate(NUMBERS.one)}>
+                            <button id="one" value="1" onClick={(e) => this.handleNumber(NUMBERS.one)}>
                                 { NUMBERS.one }
                             </button>
-                            <button id="two" value="2" onClick={(e) => this.handleUpdate(NUMBERS.two)}>
+                            <button id="two" value="2" onClick={(e) => this.handleNumber(NUMBERS.two)}>
                                 { NUMBERS.two }
                             </button>
-                            <button id="three" value="3" onClick={(e) => this.handleUpdate(NUMBERS.three)}>
+                            <button id="three" value="3" onClick={(e) => this.handleNumber(NUMBERS.three)}>
                                 { NUMBERS.three }
                             </button>
-                            <button className="jumbo" id="zero" value="0" onClick={(e) => this.handleUpdate(NUMBERS.zero)}>
+                            <button className="jumbo" id="zero" value="0" onClick={(e) => this.handleNumber(NUMBERS.zero)}>
                                 { NUMBERS.zero }
                             </button>
-                            <button id="decimal" value="." onClick={(e) => this.handleUpdate(DECIMAL_POINT)}>
+                            <button id="decimal" value="." onClick={(e) => this.handleNumber(DECIMAL_POINT)}>
                                 { DECIMAL_POINT }
                             </button>
                             <button id="equals" value="="
-                                    style={{background: `rgb(0, 68, 102)`,position: 'absolute',height: 130,bottom: 5}}>=
+                                    style={{background: `rgb(0, 68, 102)`,position: 'absolute',height: 130,bottom: 5}} onClick={(e) => this.calculate()}>=
                             </button>
                         </div>
                     </div>

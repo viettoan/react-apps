@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import acReducer from "./acReducer";
-import updateCalculationReducer from "./updateCalculationReducer";
+import formulaReducer from "./formulaReducer";
+import outputReducer from "./outputReducer";
 
 export default combineReducers({
-    acReducer: acReducer,
-    newCalculation: updateCalculationReducer
+    formula: formulaReducer,
+    output: outputReducer
 })
