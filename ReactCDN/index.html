@@ -1,0 +1,26 @@
+<html lang="html">
+    <header>
+        <title>React using CDN</title>
+
+    </header>
+    <body>
+        <div id="root"></div>
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script type="module">
+
+            const rootElement = document.getElementById('root')
+            // Creating a new div as per our requirements
+            // const divElement = document.createElement('div')
+            // divElement.textContent = 'Hello World'
+            // divElement.className = 'container'
+            //
+            // // Appending newly created div element to the root element.
+            // rootElement.append(divElement)
+
+            const divReactElement = React.createElement('div', {className: 'container'}, 'Hello World')
+
+            ReactDOM.render(divReactElement, rootElement)
+        </script>
+    </body>
+</html>
