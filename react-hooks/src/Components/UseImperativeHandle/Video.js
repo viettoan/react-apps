@@ -1,6 +1,6 @@
-import video from './../../video/Download.mp4'
+import video1 from './../../video/Download.mp4'
 import {forwardRef, useImperativeHandle, useRef} from "react";
-function Video(prop, ref) {
+function Video(props, ref) {
     const videoRef = useRef();
     useImperativeHandle(ref, () => ({
         play() {
@@ -12,7 +12,7 @@ function Video(prop, ref) {
     }))
     return (
         <>
-            <video ref={videoRef} src={video} height={500}/>
+            <video ref={videoRef} src={video1} height={500}/>
         </>
     )
 }

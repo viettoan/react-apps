@@ -8,6 +8,7 @@ export default function UseRefComponent() {
     useEffect(() => {
         console.log(h1Ref);
     }, [count])
+    const test = null;
     const handleIncrease = () => {
         timerId.current = setInterval(() => {
             setCount((prevCount => prevCount +1));
@@ -17,7 +18,7 @@ export default function UseRefComponent() {
     const handleStop = () => {
         clearInterval(timerId.current);
     }
-    console.log(timerId);
+
     return (
         <>
             <h1 ref={h1Ref}>{count}</h1>

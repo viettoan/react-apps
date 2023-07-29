@@ -1,5 +1,4 @@
 import {createContext, useState} from "react";
-import Content from "./Content";
 
 const ThemeContext = createContext()
 

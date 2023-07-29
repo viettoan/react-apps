@@ -21,9 +21,14 @@ export default function UseEffectComponent() {
 
     // 3. useEffect(callback, [dependencies])
     useEffect(() => {
+      console.log(1);
         fetch("https://dummyjson.com/products")
-            .then(res => res.json())
             .then(res => {
+                console.log(res);
+                return res.json();
+            })
+            .then(res => {
+                console.log(res);
                 setProducts(res.products)
             })
 
@@ -40,7 +45,7 @@ export default function UseEffectComponent() {
     //     }, 1000)
     //
     //     return () => clearInterval(timerId)
-    // })
+    // }, [])
 
     return (
         <>

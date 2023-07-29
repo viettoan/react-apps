@@ -10,6 +10,7 @@ import UseContextComponent from "./Hooks/UseContextComponent";
 import UseImperativeHandle from "./Hooks/UseImperativeHandle";
 
 function App() {
+  console.log(1);
   return (
     <div>
       <UseImperativeHandle></UseImperativeHandle>

@@ -2,6 +2,7 @@ import {useState} from "react";
 
 const orders = [100,200,300];
 export default function UseStateComponent() {
+  console.log(2)
     // Syntax
     // const [state, setState] = useState(initialState)
 
